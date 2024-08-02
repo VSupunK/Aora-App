@@ -6218,7 +6218,7 @@ react-native-screens@*, "react-native-screens@>= 3.0.0", react-native-screens@3.
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
-react-native@*, react-native@0.74.3:
+react-native@*, react-native@>=0.63.0, react-native@0.74.3:
   version "0.74.3"
   resolved "https://registry.npmjs.org/react-native/-/react-native-0.74.3.tgz"
   integrity sha512-UFutCC6WEw6HkxlcpQ2BemKqi0JkwrgDchYB5Svi8Sp4Xwt4HA6LGEjNQgZ+3KM44bjyFRpofQym0uh0jACGng==
@@ -7059,7 +7059,7 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-tailwindcss@^3.3.2, tailwindcss@~3:
+tailwindcss@^3.3.2, tailwindcss@>=2.0.0, tailwindcss@~3:
   version "3.3.2"
   resolved "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.3.2.tgz"
   integrity sha512-9jPkMiIBXvPc2KywkraqsUfbfj+dHDb+JPWtSJa9MLFdrPyazI7q6WX2sUrm7R9eVR7qqv3Pas7EvQFzxKnI6w==
@@ -7249,6 +7249,13 @@ turbo-stream@2.2.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/turbo-stream/-/turbo-stream-2.2.0.tgz"
   integrity sha512-FKFg7A0To1VU4CH9YmSMON5QphK0BXjSoiC7D9yMh+mEEbXLUP9qJ4hEt1qcjKtzncs1OpcnjZO8NgrlVbZH+g==
+
+twrnc@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.npmjs.org/twrnc/-/twrnc-4.5.0.tgz"
+  integrity sha512-tsa5Ku2hCneBxiFqH2WUtjazvrh2rSotvsOpilr6GL4mQlqFfa0WF//UDr52toWxQxxgl0XubREGUEApZqCMpA==
+  dependencies:
+    tailwindcss ">=2.0.0"
 
 type-detect@4.0.8:
   version "4.0.8"
