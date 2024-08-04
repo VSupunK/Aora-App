@@ -6,33 +6,50 @@ import FormField from '../../components/FormField';
 import CustomButton from '../../components/CustomButton'
 import { Link, router } from 'expo-router';
 import { createUser } from '../../lib/appwrite';
+import { useGlobalContext } from '../../context/GlobalProvider';
 
 const SignUp = () => {
+  const { setUser, setIsLogged } = useGlobalContext();
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setFrom] = useState({
     username: '',
     email: '',
     password: '',
-  })
+  });
+  // const submit = async () => {
+  //   if(!form.username || !form.email || !form.password){
+  //     Alert.alert('Error', 'Please fill in all the fields')
+  //   }
+  //   setIsSubmiting(true);
 
-  const [isSubmiting, setisSubmiting] = useState(false)
+  //   try {
+  //     const result = await createUser(form.email, form.password, form.username)
+  //   //set it to global state...
+  //   router.replace('/home')
+  //   } catch (error) {
+  //     Alert.alert('Error', error.message)
+  //   } finally {
+  //     setIsSubmiting(false)
+  //   }
+  // }
 
+  //If the previous submit form is not working, use this
   const submit = async () => {
-    if(!form.username || !form.email || !form.password){
+    if(form.username === "" || form.email === "" || form.password === ""){
       Alert.alert('Error', 'Please fill in all the fields')
     }
-    setisSubmiting(true);
-
+    setIsSubmitting(true);
     try {
       const result = await createUser(form.email, form.password, form.username)
-    //set it to global state...
-    router.replace('/home')
+      setUser(result);
+      setIsLogged(true);
+      router.replace('/home')
     } catch (error) {
       Alert.alert('Error', error.message)
     } finally {
-      setisSubmiting(false)
+      setIsSubmitting(false)
     }
-
-    createUser();
   }
 
   return (
@@ -73,7 +90,7 @@ const SignUp = () => {
           title="Sign Up"
           handlePress={submit}
           containerStyles="mt-7"
-          isLoading={isSubmiting}/>
+          isLoading={isSubmitting}/>
 
           <View className="justify-center pt-5 flex-row gap-2">
 
