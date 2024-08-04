@@ -5,6 +5,7 @@ import { images } from '../../constants';
 import FormField from '../../components/FormField';
 import CustomButton from '../../components/CustomButton'
 import { Link } from 'expo-router';
+import { signIn } from '../../lib/appwrite';
 
 const SignIn = () => {
   const [form, setFrom] = useState({
@@ -14,8 +15,23 @@ const SignIn = () => {
 
   const [isSubmiting, setisSubmiting] = useState(false)
 
-  const submit = () => {
+  const submit = async () => {
+    if(!form.email || !form.password){
+      Alert.alert('Error', 'Please fill in all the fields')
+    }
+    setisSubmiting(true);
 
+    try {
+      await signIn(form.email, form.password)
+    //set it to global state...
+    router.replace('/home')
+    } catch (error) {
+      Alert.alert('Error', error.message)
+    } finally {
+      setisSubmiting(false)
+    }
+
+    createUser();
   }
 
   return (
@@ -25,7 +41,7 @@ const SignIn = () => {
             <Image source={images.logo}
             resizeMode='contain' className="w-[115px] h-[35px]"/>
 
-            <Text className="text-2xl text-white text-semibold mt-10 font-psemibold">Log in to Aora</Text>
+            <Text className="text-2xl text-white text-semibold mt-10 font-psemibold mb-10">Log in to Aora</Text>
           
           {/* Email input field */}
           <FormField
