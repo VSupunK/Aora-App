@@ -9,8 +9,8 @@ import { getCurrentUser, signIn } from '../../lib/appwrite';
 import { useGlobalContext } from '../../context/GlobalProvider';
 
 const SignIn = () => {
-  const{ setUser, setIsLogged } = useGlobalContext;
-  const [isSubmiting, setIsSubmiting] = useState(false);
+  const{ setUser, setIsLoggedIn } = useGlobalContext();
+  const [isSubmiting, setSubmiting] = useState(false);
   const [form, setFrom] = useState({
     email: '',
     password: '',
@@ -18,43 +18,44 @@ const SignIn = () => {
 
   
 
-  const submit = async () => {
-    if(!form.email || !form.password){
-      Alert.alert('Error', 'Please fill in all the fields')
-    }
-    setIsSubmiting(true);
-
-    try {
-      await signIn(form.email, form.password)
-    //set it to global state...
-    router.replace('/home')
-    } catch (error) {
-      Alert.alert('Error', error.message)
-    } finally {
-      setIsSubmiting(false)
-    }
-  }
-
-  //If the previous submit form is not working, use this
   // const submit = async () => {
-  //   if(!form.email === "" || !form.password === ""){
+  //   if(!form.email || !form.password){
   //     Alert.alert('Error', 'Please fill in all the fields')
   //   }
-  //   setSubmiting(true);
+  //   setIsSubmiting(true);
 
   //   try {
   //     await signIn(form.email, form.password)
-  //     const result = await getCurrentUser();
-  //     setUser(result);
-  //     setIsLogged(true);
-  //     Alert.alert("Success", "User signed in successfully");
+  //   //set it to global state...
   //   router.replace('/home')
   //   } catch (error) {
   //     Alert.alert('Error', error.message)
   //   } finally {
-  //     setSubmiting(false)
+  //     setIsSubmiting(false)
   //   }
   // }
+
+  //If the previous submit form is not working, use this
+  const submit = async () => {
+    if(!form.email === "" || !form.password === ""){
+      Alert.alert('Error', 'Please fill in all the fields')
+    }
+    setSubmiting(true);
+
+    try {
+      await signIn(form.email, form.password)
+      const result = await getCurrentUser();
+      setUser(result);
+      setIsLoggedIn(true);
+
+      Alert.alert("Success", "User signed in successfully");
+    router.replace('/home')
+    } catch (error) {
+      Alert.alert('Error', error.message)
+    } finally {
+      setSubmiting(false);
+    }
+  }
 
   return (
     <SafeAreaView className="bg-primary h-full">

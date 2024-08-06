@@ -25,8 +25,8 @@ const Home = () => {
               </Text>
             </View>
             <View className="mt-1.5">
-              <Image 
-              source={images.logoSmall}/>
+              {/* <Image 
+              source={images.logoSmall}/> */}
             </View>
           </View>
         </View>
