@@ -10,7 +10,7 @@ import { useGlobalContext } from '../../context/GlobalProvider';
 
 const SignIn = () => {
   const{ setUser, setIsLoggedIn } = useGlobalContext();
-  const [isSubmiting, setSubmiting] = useState(false);
+  const [isSubmitting, setSubmitting] = useState(false);
   const [form, setFrom] = useState({
     email: '',
     password: '',
@@ -40,7 +40,7 @@ const SignIn = () => {
     if(!form.email === "" || !form.password === ""){
       Alert.alert('Error', 'Please fill in all the fields')
     }
-    setSubmiting(true);
+    setSubmitting(true);
 
     try {
       await signIn(form.email, form.password)
@@ -53,7 +53,7 @@ const SignIn = () => {
     } catch (error) {
       Alert.alert('Error', error.message)
     } finally {
-      setSubmiting(false);
+      setSubmitting(false);
     }
   }
 
@@ -86,7 +86,7 @@ const SignIn = () => {
           title="Sign In"
           handlePress={submit}
           containerStyles="mt-7"
-          isLoading={isSubmiting}/>
+          isLoading={isSubmitting}/>
 
           <View className="justify-center pt-5 flex-row gap-2">
 

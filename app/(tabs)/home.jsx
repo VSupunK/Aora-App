@@ -3,15 +3,16 @@ import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import logoSmall from "../../assets/images/logoSmall.png";
+import SearchInputs from '../../components/SearchInput';
 
 const Home = () => {
   return (
     <SafeAreaView className="bg-primary">
       <FlatList 
-      data={[{ id: 1 }]}
+      data={[{ id: 1 }, { id: 2 },  { id: 3 },]}
       keyExtractor={(item) => item.$id}
       renderItem={({ item }) => (
-        <Text className="text-3xl">{item.id}</Text>
+        <Text className="text-3xl text-white">{item.id}</Text>
       )}
       ListHeaderComponent={() => (
         <View className="my-6 px-4 space-y-6">
@@ -26,9 +27,13 @@ const Home = () => {
             </View>
             <View className="mt-1.5">
               <Image 
-              source={logoSmall}/>
+              source={logoSmall}
+              className="w-9 h-10"
+              resizeMode='contain'
+              />
             </View>
           </View>
+          <SearchInputs />
         </View>
       )}
       />

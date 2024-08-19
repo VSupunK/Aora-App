@@ -11,7 +11,7 @@ import { useGlobalContext } from '../../context/GlobalProvider';
 const SignUp = () => {
   const { setUser, setIsLogged } = useGlobalContext();
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setSubmitting] = useState(false);
   const [form, setFrom] = useState({
     username: '',
     email: '',
@@ -39,7 +39,7 @@ const SignUp = () => {
     if(form.username === "" || form.email === "" || form.password === ""){
       Alert.alert('Error', 'Please fill in all the fields')
     }
-    setIsSubmitting(true);
+    setSubmitting(true);
     try {
       const result = await createUser(form.email, form.password, form.username)
       setUser(result);
@@ -48,7 +48,7 @@ const SignUp = () => {
     } catch (error) {
       Alert.alert('Error', error.message)
     } finally {
-      setIsSubmitting(false)
+      setSubmitting(false)
     }
   }
 
